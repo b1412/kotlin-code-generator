@@ -4,9 +4,11 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 plugins {
     val kotlinVersion = "1.3.50"
     jacoco
+    maven
     id("org.springframework.boot") version "2.2.0.RC1"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     kotlin("jvm") version kotlinVersion
+
 }
 
 val jar: Jar by tasks
@@ -15,8 +17,6 @@ val bootJar: BootJar by tasks
 bootJar.enabled = false
 jar.enabled = true
 
-group = "cannon"
-version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 val developmentOnly by configurations.creating
