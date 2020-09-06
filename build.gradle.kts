@@ -7,10 +7,6 @@ plugins {
     id("org.springframework.boot") version "2.3.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version kotlinVersion
-    kotlin("plugin.jpa") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion
-    kotlin("plugin.noarg") version kotlinVersion
 }
 
 val jar: Jar by tasks
