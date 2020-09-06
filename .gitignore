@@ -1,7 +1,4 @@
 .gradle
 .idea
-/build/
-out
-classes
-/logs/
-
+build
+*.iml

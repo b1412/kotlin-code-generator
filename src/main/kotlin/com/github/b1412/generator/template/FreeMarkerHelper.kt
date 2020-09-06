@@ -24,7 +24,7 @@ class FreeMarkerHelper(templatesBaseDir: String? = null) : TemplateHelper() {
         }
     }
 
-    override fun put(key: String, value: Any?) {
+    override fun put(key: String, value: Any) {
         var value = value
         if (value is Map<*, *>) {
             value = SimpleHash(value)
@@ -32,7 +32,7 @@ class FreeMarkerHelper(templatesBaseDir: String? = null) : TemplateHelper() {
         context.get().put(key, value)
     }
 
-    override fun putAll(map: MutableMap<String, Any?>) {
+    override fun putAll(map: MutableMap<String, Any>) {
         for (key in map.keys) {
             put(key, map[key] as Any)
         }
