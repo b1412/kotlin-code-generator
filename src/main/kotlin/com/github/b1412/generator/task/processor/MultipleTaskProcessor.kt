@@ -10,7 +10,7 @@ class MultipleTaskProcessor : ITaskProcessor {
     override fun run(codeProject: CodeProject, task: Task, context: MutableMap<String, Any>): List<String> {
         val paths = Lists.newArrayList<String>()
         for (codeEntity in codeProject.entities) {
-            if (task.ignoreEntities.map { it.simpleName }.any { it == codeEntity.name }) {
+            if (task.ignoreEntities.any { it == codeEntity.name }) {
                 continue
             }
             val codeEntityMap = codeEntity.asMap().toMutableMap()

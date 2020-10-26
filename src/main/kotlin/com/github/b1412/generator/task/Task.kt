@@ -35,7 +35,7 @@ open class Task(
 
         var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
 
-        var ignoreEntities: List<Class<Any>> = listOf()
+        var ignoreEntities: List<String> = listOf()
 
 ) {
     fun run(codeProject: CodeProject, root: MutableMap<String, Any>): List<String> {
