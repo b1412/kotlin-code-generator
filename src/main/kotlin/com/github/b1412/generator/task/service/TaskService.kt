@@ -11,8 +11,10 @@ object TaskService {
     fun processTask(codeProject: CodeProject, task: Task): Pair<Task, List<String>> {
         val paths: List<String>
         val scope = mutableMapOf<String, Any>()
-        val codeProjectMap = codeProject.asMap()
-        //  codeProjectMap.putAll(task.projectExtProcessor!!.invoke(task, codeProject))
+        val codeProjectMap = codeProject.asMap().toMutableMap()
+        task.projectExtProcessors.forEach {
+            codeProjectMap += (it.invoke(task, codeProject))
+        }
         scope["project"] = codeProjectMap
         task.templateHelper = codeProject.templateEngine
         task.templateHelper!!.putAll(scope)
