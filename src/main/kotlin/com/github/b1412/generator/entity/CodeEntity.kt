@@ -54,8 +54,9 @@ fun scanForCodeEntities(path: String, clazz: Class<*>): List<CodeEntity> {
     val inputStream = classLoader.getResourceAsStream("generator/local.properties")
     val appProps = Properties()
     appProps.load(inputStream)
+    val projectId = appProps.getProperty("projectId").toInt().dec() * 200
     val entities = path.split(",").flatMap { findClasses(clazz, it) }
-    entities.mapIndexed { index, clazz -> entityCode.put(clazz.name, index) }
+    entities.mapIndexed { index, clazz -> entityCode.put(clazz.name, index + projectId) }
     return entities
             .asSequence()
             .filter {
