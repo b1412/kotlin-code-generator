@@ -33,7 +33,9 @@ open class Task(
 
         var entityExtProcessors: List<EntityExtProcessor> = listOf(),
 
-        var projectExtProcessors: List<ProjectExtProcessor> = listOf()
+        var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
+
+        var ignoreEntities: List<Class<Any>> = listOf()
 
 ) {
     fun run(codeProject: CodeProject, root: MutableMap<String, Any>): List<String> {

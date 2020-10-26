@@ -8,7 +8,6 @@ open class SingleTask(
         templatePath: String,
         replaceFile: Boolean = true,
         projectExtProcessors: List<ProjectExtProcessor> = listOf()
-
 ) : Task(
         folder = folder,
         filename = filename,
