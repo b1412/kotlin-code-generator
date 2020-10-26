@@ -7,12 +7,14 @@ open class SingleTask(
         filename: FilenameProcessor,
         templatePath: String,
         replaceFile: Boolean = true,
-        projectExtProcessors: List<ProjectExtProcessor> = listOf()
+        projectExtProcessors: List<ProjectExtProcessor> = listOf(),
+        ignoreEntities: List<String> = listOf()
 ) : Task(
         folder = folder,
         filename = filename,
         taskType = SingleTaskProcessor(),
         templatePath = templatePath,
         replaceFile = replaceFile,
-        projectExtProcessors = projectExtProcessors
+        projectExtProcessors = projectExtProcessors,
+        ignoreEntities = ignoreEntities
 )
