@@ -7,7 +7,7 @@ open class SingleTask(
         filename: FilenameProcessor,
         templatePath: String,
         replaceFile: Boolean = true,
-        projectExtProcessors: List<ProjectExtProcessor>
+        projectExtProcessors: List<ProjectExtProcessor> = listOf()
 
 ) : Task(
         folder = folder,
