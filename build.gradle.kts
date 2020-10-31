@@ -20,9 +20,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 repositories {
     mavenLocal()
     mavenCentral()
-    maven(url = "https://repo.spring.io/milestone")
-    maven(url = "https://dl.bintray.com/arrow-kt/arrow-kt/")
-    maven(url = "https://oss.jfrog.org/artifactory/oss-snapshot-local/")
+    maven(url = "https://jitpack.io")
 }
 
 dependencies {
