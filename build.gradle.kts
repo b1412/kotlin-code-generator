@@ -38,6 +38,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-syntax:$arrowVersion")
 
     implementation("com.google.guava:guava:29.0-jre")
+    implementation("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
