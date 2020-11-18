@@ -9,7 +9,6 @@ import com.github.b1412.generator.metadata.*
 import org.hibernate.validator.constraints.Range
 import java.lang.reflect.Field
 import java.lang.reflect.ParameterizedType
-import java.util.*
 import javax.persistence.Column
 import javax.persistence.Id
 import javax.validation.constraints.*
@@ -49,14 +48,9 @@ fun String.remainLastIndexOf(s: String): String {
 
 val entityCode: MutableMap<String, Int> = mutableMapOf()
 
-fun scanForCodeEntities(path: String, clazz: Class<*>): List<CodeEntity> {
-    val classLoader = Thread.currentThread().contextClassLoader
-    val inputStream = classLoader.getResourceAsStream("generator/local.properties")
-    val appProps = Properties()
-    appProps.load(inputStream)
-    val projectId = appProps.getProperty("projectId").toInt() * 100
+fun scanForCodeEntities(path: String, clazz: Class<*>, projectId: Int): List<CodeEntity> {
     val entities = path.split(",").flatMap { findClasses(clazz, it) }
-    entities.mapIndexed { index, c -> entityCode.put(c.name, index.inc() + projectId) }
+    entities.mapIndexed { index, c -> entityCode.put(c.name, index.inc() + projectId * 100) }
     return entities
             .asSequence()
             .filter {
@@ -66,7 +60,6 @@ fun scanForCodeEntities(path: String, clazz: Class<*>): List<CodeEntity> {
 }
 
 fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
-
     var codeEntity = CodeEntity(
             name = clazz.simpleName
     )
