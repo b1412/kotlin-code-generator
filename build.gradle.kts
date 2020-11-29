@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    val kotlinVersion = "1.3.72"
+    val kotlinVersion = "1.4.20"
     maven
-    id("org.springframework.boot") version "2.3.0.RELEASE"
+    id("org.springframework.boot") version "2.4.0"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version kotlinVersion
 }
@@ -24,22 +24,22 @@ repositories {
 }
 
 dependencies {
-    val arrowVersion = "0.10.5"
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    val arrowVersion = "0.11.0"
+    api("org.jetbrains.kotlin:kotlin-reflect")
+    api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("org.springframework.boot:spring-boot-starter-freemarker")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    api("org.springframework.boot:spring-boot-starter-freemarker")
+    api("org.springframework.boot:spring-boot-starter-validation")
+    api("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    implementation("io.arrow-kt:arrow-core:$arrowVersion")
-    implementation("io.arrow-kt:arrow-syntax:$arrowVersion")
+    api("io.arrow-kt:arrow-core:$arrowVersion")
+    api("io.arrow-kt:arrow-syntax:$arrowVersion")
 
-    implementation("com.google.guava:guava:29.0-jre")
-    implementation("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
+    api("com.google.guava:guava:29.0-jre")
+    api("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    testApi("org.junit.jupiter:junit-jupiter-api")
+    testApi("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
         exclude(module = "mockito-core")
     }
