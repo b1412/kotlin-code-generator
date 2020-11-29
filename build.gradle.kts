@@ -24,7 +24,11 @@ repositories {
 }
 
 dependencies {
+    api("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
+
     val arrowVersion = "0.11.0"
+    arrow(arrowVersion)
+
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
@@ -32,11 +36,8 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-validation")
     api("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    api("io.arrow-kt:arrow-core:$arrowVersion")
-    api("io.arrow-kt:arrow-syntax:$arrowVersion")
 
     api("com.google.guava:guava:29.0-jre")
-    api("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
 
     testApi("org.junit.jupiter:junit-jupiter-api")
     testApi("org.springframework.boot:spring-boot-starter-test") {
@@ -44,6 +45,12 @@ dependencies {
         exclude(module = "mockito-core")
     }
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+}
+
+fun DependencyHandlerScope.arrow(arrowVersion: String) {
+    api("io.arrow-kt:arrow-fx:$arrowVersion")
+    api("io.arrow-kt:arrow-optics:$arrowVersion")
+    api("io.arrow-kt:arrow-syntax:$arrowVersion")
 }
 
 tasks.withType<KotlinCompile> {
