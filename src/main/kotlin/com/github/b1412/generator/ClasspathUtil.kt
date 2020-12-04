@@ -10,7 +10,10 @@ fun findClasses(target: Class<*>, pattern: String): List<Class<*>> {
     val metadataReaderFactory = CachingMetadataReaderFactory(resourcePatternResolver)
     val resources = resourcePatternResolver.getResources(pattern)
     return resources.map {
-        ClassUtils.forName(metadataReaderFactory.getMetadataReader(it).classMetadata.className, Thread.currentThread().contextClassLoader)
+        ClassUtils.forName(
+            metadataReaderFactory.getMetadataReader(it).classMetadata.className,
+            Thread.currentThread().contextClassLoader
+        )
     }.filter {
         target.isAssignableFrom(it) && it != target
     }

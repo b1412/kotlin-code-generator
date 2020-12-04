@@ -15,27 +15,27 @@ typealias EntityExtProcessor = (Task, CodeEntity) -> Map<String, Any?>
 
 
 open class Task(
-        var taskType: ITaskProcessor,
+    var taskType: ITaskProcessor,
 
-        var multiFiles: List<Map<String, Any>> = mutableListOf(),
+    var multiFiles: List<Map<String, Any>> = mutableListOf(),
 
-        var targetPath: String = "",
+    var targetPath: String = "",
 
-        var folder: FilenameProcessor,
+    var folder: FilenameProcessor,
 
-        var filename: FilenameProcessor,
+    var filename: FilenameProcessor,
 
-        var templatePath: String,
+    var templatePath: String,
 
-        var replaceFile: Boolean = true,
+    var replaceFile: Boolean = true,
 
-        var templateHelper: TemplateHelper? = null,
+    var templateHelper: TemplateHelper? = null,
 
-        var entityExtProcessors: List<EntityExtProcessor> = listOf(),
+    var entityExtProcessors: List<EntityExtProcessor> = listOf(),
 
-        var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
+    var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
 
-        var ignoreEntities: List<String> = listOf()
+    var ignoreEntities: List<String> = listOf()
 
 ) {
     fun run(codeProject: CodeProject, root: MutableMap<String, Any>): List<String> {

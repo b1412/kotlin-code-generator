@@ -1,19 +1,19 @@
 package com.github.b1412.generator.entity
 
 data class CodeActionItem(
-        val display: String,
-        val icon: String = "fa-caret-right",
-        val target: String = "_self",
+    val display: String,
+    val icon: String = "fa-caret-right",
+    val target: String = "_self",
 
-        val confirmTitle: String = "",
-        val confirmMessage: String = "",
+    val confirmTitle: String = "",
+    val confirmMessage: String = "",
 
-        val modalName: String = "",
-        val modalPlaceholder: String = "",
-        val modalNoteFieldName: String = "modalNote",
-        val httpMethod: String,
-        val url: String,
-        val permissionName: String
+    val modalName: String = "",
+    val modalPlaceholder: String = "",
+    val modalNoteFieldName: String = "modalNote",
+    val httpMethod: String,
+    val url: String,
+    val permissionName: String
 )
 
 

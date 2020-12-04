@@ -22,7 +22,12 @@ object TaskService {
         return Pair(task, paths)
     }
 
-    fun processTemplate(codeProject: CodeProject, codeEntity: CodeEntity?, task: Task, root: Map<String, Any>): List<String> {
+    fun processTemplate(
+        codeProject: CodeProject,
+        codeEntity: CodeEntity?,
+        task: Task,
+        root: Map<String, Any>
+    ): List<String> {
         if (task.multiFiles.isEmpty()) {
             val templateFilename = task.templatePath
             var folder = task.folder(codeProject, codeEntity)
@@ -59,7 +64,6 @@ object TaskService {
                 }
                 outputFilename
             }
-
         }
     }
 }
