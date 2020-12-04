@@ -3,7 +3,7 @@ package com.github.b1412.generator.entity
 import com.github.b1412.generator.core.TemplateHelper
 import com.github.b1412.generator.task.Task
 import com.github.b1412.generator.task.service.TaskService
-import java.util.stream.Stream
+import kotlin.streams.toList
 
 
 data class CodeProject(
@@ -17,10 +17,10 @@ data class CodeProject(
 
     var tasks: List<Task> = listOf()
 ) {
-    fun generate(): Stream<Pair<Task, List<String>>>? {
+    fun generate(): List<Pair<Task, List<String>>> {
         return tasks.parallelStream().map {
             TaskService.processTask(this, it)
-        }
+        }.toList()
     }
 }
 

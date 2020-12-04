@@ -33,12 +33,11 @@ object TaskService {
             var folder = task.folder(codeProject, codeEntity)
             folder = task.targetPath + File.separator + folder
 
-            val folderDir = File(folder)
+            val folderDir = File(folder).parentFile
             if (!folderDir.exists()) {
                 folderDir.mkdirs()
             }
-            val filename = task.filename(codeProject, codeEntity)
-            val outputFilename = folder + File.separator + filename
+            val outputFilename = folder
             val outputFile = File(outputFilename)
             if (task.replaceFile || !outputFile.exists()) {
                 task.templateHelper!!.exec(templateFilename, outputFilename)
@@ -52,12 +51,11 @@ object TaskService {
                 val templateFilename = task.templatePath
                 var folder = task.folder(codeProject, codeEntity)
                 folder = task.targetPath + File.separator + folder
-                val folderDir = File(folder)
+                val folderDir = File(folder).parentFile
                 if (!folderDir.exists()) {
                     folderDir.mkdirs()
                 }
-                val filename = task.filename(codeProject, codeEntity)
-                val outputFilename = folder + File.separator + filename
+                val outputFilename = folder
                 val outputFile = File(outputFilename)
                 if (task.replaceFile || !outputFile.exists()) {
                     task.templateHelper!!.exec(templateFilename, outputFilename)

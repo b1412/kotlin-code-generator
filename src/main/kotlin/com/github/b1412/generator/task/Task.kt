@@ -23,8 +23,6 @@ open class Task(
 
     var folder: FilenameProcessor,
 
-    var filename: FilenameProcessor,
-
     var templatePath: String,
 
     var replaceFile: Boolean = true,
