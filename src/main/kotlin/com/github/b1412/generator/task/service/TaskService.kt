@@ -30,7 +30,7 @@ object TaskService {
     ): List<String> {
         if (task.multiFiles.isEmpty()) {
             val templateFilename = task.templatePath
-            var folder = task.folder(codeProject, codeEntity)
+            var folder = task.filePath(codeProject, codeEntity)
             folder = task.targetPath + File.separator + folder
 
             val folderDir = File(folder).parentFile
@@ -49,7 +49,7 @@ object TaskService {
                     task.templateHelper!!.put(e.key, e.value)
                 }
                 val templateFilename = task.templatePath
-                var folder = task.folder(codeProject, codeEntity)
+                var folder = task.filePath(codeProject, codeEntity)
                 folder = task.targetPath + File.separator + folder
                 val folderDir = File(folder).parentFile
                 if (!folderDir.exists()) {

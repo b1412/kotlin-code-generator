@@ -21,7 +21,7 @@ open class Task(
 
     var targetPath: String = "",
 
-    var folder: FilenameProcessor,
+    var filePath: FilenameProcessor,
 
     var templatePath: String,
 

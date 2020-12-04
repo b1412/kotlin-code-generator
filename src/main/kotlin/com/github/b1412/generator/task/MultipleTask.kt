@@ -9,7 +9,7 @@ open class MultipleTask(
     entityExtProcessors: List<EntityExtProcessor> = listOf(),
     ignoreEntities: List<String> = listOf()
 ) : Task(
-    folder = folder,
+    filePath = folder,
     taskType = MultipleTaskProcessor(),
     templatePath = templatePath,
     replaceFile = replaceFile,
