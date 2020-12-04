@@ -1,6 +1,9 @@
 package com.github.b1412.generator.entity
 
+import java.lang.reflect.Field
+
 data class CodeField(
+        val nativeField:Field,
         val name: String,
         val type: FieldType,
         val primaryKey: Boolean = false,

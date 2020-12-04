@@ -36,7 +36,6 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-validation")
     api("org.springframework.boot:spring-boot-starter-data-jpa")
 
-
     api("com.google.guava:guava:29.0-jre")
 
     testApi("org.junit.jupiter:junit-jupiter-api")
