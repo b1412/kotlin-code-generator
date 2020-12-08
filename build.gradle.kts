@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    api("com.github.b1412:kotlin-code-generator-meta:8c10be3699")
+    api("com.github.b1412:kotlin-code-generator-meta:11abea967b")
 
     val arrowVersion = "0.11.0"
     arrow(arrowVersion)

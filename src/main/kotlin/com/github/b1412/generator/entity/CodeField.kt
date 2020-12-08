@@ -40,11 +40,10 @@ data class CodeField(
     val weight: Int = 6,
     val exportable: Boolean = false,
     val importable: Boolean = false,
+    val excelIndex: Int = 0,
     val column: String? = null,
     val header: String? = null,
     val embeddedEntity: Boolean = false
-
-
 )
 
 

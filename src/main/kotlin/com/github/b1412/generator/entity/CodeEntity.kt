@@ -179,7 +179,7 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
             is ExcelFeature -> {
                 codeEntity = codeEntity.copy(
                     excelExport = it.exportable,
-                    excelImport = it.importable
+                    excelImport = it.importable,
                 )
             }
         }
@@ -283,7 +283,8 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
                             field.name
                         },
                         exportable = fieldAnnotation.exportable,
-                        importable = fieldAnnotation.importable
+                        importable = fieldAnnotation.importable,
+                        excelIndex = fieldAnnotation.index,
                     )
                 }
                 is AttachmentFeature -> {
