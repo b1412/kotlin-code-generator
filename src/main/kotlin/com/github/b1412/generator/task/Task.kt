@@ -35,7 +35,7 @@ open class Task(
 
     var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
 
-    var fieldExtProcessors: List<FieldExtProcessor> = listOf(),
+    var fieldExtProcessor: FieldExtProcessor? = null,
 
     var ignoreEntities: List<String> = listOf()
 
