@@ -7,6 +7,7 @@ open class MultipleTask(
     templatePath: String,
     replaceFile: Boolean = true,
     entityExtProcessors: List<EntityExtProcessor> = listOf(),
+    fieldExtProcessors: List<FieldExtProcessor> = listOf(),
     ignoreEntities: List<String> = listOf()
 ) : Task(
     filePath = filePath,
@@ -14,5 +15,6 @@ open class MultipleTask(
     templatePath = templatePath,
     replaceFile = replaceFile,
     entityExtProcessors = entityExtProcessors,
+    fieldExtProcessors = fieldExtProcessors,
     ignoreEntities = ignoreEntities
 )
