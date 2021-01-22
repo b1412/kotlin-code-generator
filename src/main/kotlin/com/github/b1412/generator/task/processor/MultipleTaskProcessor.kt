@@ -1,5 +1,4 @@
 package com.github.b1412.generator.task.processor
-
 import com.github.b1412.generator.entity.CodeProject
 import com.github.b1412.generator.ext.asMap
 import com.github.b1412.generator.task.Task
@@ -18,6 +17,11 @@ class MultipleTaskProcessor : ITaskProcessor {
                 val result = it.invoke(task, codeEntity)
                 codeEntityMap += result
             }
+            val fieldProcessor = task.fieldExtProcessors[0]
+            val fieldsMap = codeEntity.fields.map {
+                fieldProcessor.invoke(task, it)
+            }
+            codeEntityMap["fields"] = fieldsMap
             codeProject.templateEngine.put("entity", codeEntityMap)
             paths.addAll(TaskService.processTemplate(codeProject, codeEntity, task, context))
         }

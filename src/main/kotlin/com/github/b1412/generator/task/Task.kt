@@ -3,6 +3,7 @@ package com.github.b1412.generator.task
 
 import com.github.b1412.generator.core.TemplateHelper
 import com.github.b1412.generator.entity.CodeEntity
+import com.github.b1412.generator.entity.CodeField
 import com.github.b1412.generator.entity.CodeProject
 import com.github.b1412.generator.task.processor.ITaskProcessor
 
@@ -13,6 +14,7 @@ typealias ProjectExtProcessor = (Task, CodeProject) -> Map<String, Any?>
 
 typealias EntityExtProcessor = (Task, CodeEntity) -> Map<String, Any?>
 
+typealias FieldExtProcessor = (Task, CodeField) -> Map<String, Any?>
 
 open class Task(
     var taskType: ITaskProcessor,
@@ -32,6 +34,8 @@ open class Task(
     var entityExtProcessors: List<EntityExtProcessor> = listOf(),
 
     var projectExtProcessors: List<ProjectExtProcessor> = listOf(),
+
+    var fieldExtProcessors: List<FieldExtProcessor> = listOf(),
 
     var ignoreEntities: List<String> = listOf()
 

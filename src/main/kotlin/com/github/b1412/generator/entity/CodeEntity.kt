@@ -67,101 +67,6 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
     codeEntity.permissions = clazz.getAnnotationsByType(PermissionFeature::class.java)
         .map { CodePermission(role = it.role, rule = it.rule, httpMethod = it.httpMethods) }
 
-
-    codeEntity.toolbar = clazz.getAnnotation(ToolbarFeatures::class.java).toOption().map {
-        CodeToolbar(
-            showReset = it.showReset,
-            showAdd = it.showAdd,
-            showExcelImport = it.showExcelImport,
-            showExcelExport = it.showExcelExport,
-            toolbarItems = it.value.map { item ->
-                CodeToolbarItem(
-                    display = item.display,
-                    icon = item.icon,
-                    target = item.target,
-                    confirmMessage = item.confirmMessage,
-                    confirmTitle = item.confirmTitle,
-                    modalName = item.modalName,
-                    modalNoteFieldName = item.modalNoteFieldName.split(",")
-                        .map { modalField ->
-                            CodeModalField(name = modalField, type = if (modalField == "tp") "boolean" else "String")
-                        },
-                    modalPlaceholder = item.modalPlaceholder,
-                    selectOneEntity = item.selectOneEntity,
-                    selectOneDisplay = item.selectOneDisplay,
-                    multiple = item.multiple,
-                    httpMethod = item.httpMethod,
-                    url = item.url,
-                    permissionName = item.permissionName
-                )
-            }
-        )
-    }.getOrElse {
-        CodeToolbar()
-    }
-    codeEntity.action = clazz.getAnnotation(ActionFeatures::class.java).toOption().map {
-        CodeAction(
-            showDelete = it.showDelete,
-            showEdit = it.showEdit,
-            codeActionItems = it.value.map { item ->
-                CodeActionItem(
-                    display = item.display,
-                    icon = item.icon,
-                    target = item.target,
-                    confirmTitle = item.confirmTitle,
-                    confirmMessage = item.confirmMessage,
-                    modalName = item.modalName,
-                    modalPlaceholder = item.modalPlaceholder,
-                    modalNoteFieldName = item.modalNoteFieldName,
-                    httpMethod = item.httpMethod,
-                    url = item.url,
-                    permissionName = item.permissionName
-                )
-            }
-        )
-    }.getOrElse {
-        CodeAction()
-    }
-
-    codeEntity.menus = clazz.getAnnotationsByType(MenuFeature::class.java)
-        .map {
-            val map: MutableMap<String, Any> = if (it.queryParams.isNotBlank()) {
-                it.queryParams.split(";").map {
-                    val (l, r) = it.split("=")
-                    Pair(l, r)
-                }.toMap().toMutableMap()
-            } else {
-                mutableMapOf()
-            }
-            map["entity"] = codeEntity.name.decapitalize()
-            map["columnValue"] = Utils.spacedCapital2LowerCamel(it.name)
-            map["menuName"] = it.name
-            val enhancedQueryParams = "{" + map.map { "${it.key}:'${it.value}'" }.joinToString(",") + "}"
-
-
-            CodeMenu(
-                parentName = it.parentName,
-                entity = codeEntity,
-                sort = it.sort,
-                name = if (it.name.isNotBlank()) {
-                    it.name
-                } else {
-                    codeEntity.name
-                },
-                actionItems = it.actionItems.toMutableList(),
-                toolbarItems = it.toolbarItems.toMutableList(),
-                queryParams = enhancedQueryParams
-            )
-        }
-
-
-    val map = clazz.getAnnotationsByType(CssFeature::class.java)
-        .map { cssFeature ->
-            Pair(cssFeature.condition, cssFeature.cssClass)
-        }.toMap()
-
-    codeEntity.css = "{" + map.map { "'${it.value}': item.${it.key}" }.joinToString(",") + "}"
-
     val ignoredFields = listOf("serialVersionUID", "Companion")
     clazz.declaredAnnotations.forEach {
         when (it) {
@@ -323,37 +228,7 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
             )
             columns[columnFeature.menuName] = list
         }
-        val entityFeature = clazz.getAnnotation(EntityFeature::class.java)
-        when (codeField.name) {
-//            "createdAt" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.createdAtInForm)
-//                codeField = codeField.copy(hiddenInList = !entityFeature.createdAtInList)
-//            }
-//            "creator" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.creatorInForm, display = listOf("name"))
-//                codeField = codeField.copy(hiddenInList = !entityFeature.creatorInList)
-//            }
-//            "updatedAt" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.updatedAtInForm)
-//                codeField = codeField.copy(hiddenInList = !entityFeature.updatedAtInList)
-//            }
-//            "modifier" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.modifierInForm, display = listOf("name"))
-//                codeField = codeField.copy(hiddenInList = !entityFeature.modifierInList)
-//            }
-//            "user" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.userInForm)
-//                codeField = codeField.copy(hiddenInList = !entityFeature.userInList)
-//                codeField = codeField.copy(selectOne = true, display = listOf("name"))
-//            }
-//            "version" -> {
-//                codeField = codeField.copy(hiddenInForm = !entityFeature.versionInForm)
-//                codeField = codeField.copy(hiddenInList = !entityFeature.versionInList)
-//            }
-            else -> codeField
-        }
         codeField
-
     }
 
     clazz.getAnnotation(UserColumns::class.java)?.value?.forEach { userColumn ->
