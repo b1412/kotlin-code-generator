@@ -3,6 +3,7 @@ package com.github.b1412.generator.task.processor
 import com.github.b1412.generator.entity.CodeProject
 import com.github.b1412.generator.ext.asMap
 import com.github.b1412.generator.task.Task
+import com.github.b1412.generator.task.processor.ITaskProcessor
 import com.github.b1412.generator.task.service.TaskService
 import com.google.common.collect.Lists
 
@@ -21,7 +22,7 @@ class MultipleTaskProcessor : ITaskProcessor {
             val fieldProcessor = task.fieldExtProcessor
             if (fieldProcessor != null) {
                 val fieldsMap = codeEntity.fields.map {
-                    fieldProcessor.invoke(task, it)
+                    it.asMap().toMutableMap() + fieldProcessor.invoke(task, it)
                 }
                 codeEntityMap["fields"] = fieldsMap
             }
