@@ -110,12 +110,16 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
             }.getOrElse { Utils.spacedCapital(field.name) },
 
             type = when {
-                List::class.java.isAssignableFrom(field.type) ->
+                List::class.java.isAssignableFrom(field.type) -> {
+                    val name = (field.genericType as ParameterizedType).actualTypeArguments[0]
+                        .typeName
+                    val index = name.lastIndexOf(".")
+                    name.substring(index.inc())
                     FieldType(
                         name = "List",
-                        element = (field.genericType as ParameterizedType).actualTypeArguments[0]
-                            .typeName.remainLastIndexOf(".")
+                        element = name
                     )
+                }
                 base.isAssignableFrom(field.type) ->
                     FieldType(name = "Entity", element = field.type.simpleName)
                 else -> FieldType(name = field.type.simpleName)
