@@ -114,10 +114,10 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
                     val name = (field.genericType as ParameterizedType).actualTypeArguments[0]
                         .typeName
                     val index = name.lastIndexOf(".")
-                    name.substring(index.inc())
                     FieldType(
                         name = "List",
-                        element = name
+                        element = name.substring(index.inc())
+
                     )
                 }
                 base.isAssignableFrom(field.type) ->
@@ -288,4 +288,10 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
     }
     return codeEntity
 
+}
+
+fun main() {
+    val clazz = "com.github.b1412.email.entity.Attachment"
+    val index = clazz.lastIndexOf(".")
+    println(clazz.substring(index.inc()))
 }
