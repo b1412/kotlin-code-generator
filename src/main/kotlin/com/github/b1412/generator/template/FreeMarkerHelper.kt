@@ -22,6 +22,10 @@ class FreeMarkerHelper(templatesBaseDir: String? = null) : TemplateHelper() {
         } else {
             configuration.setClassForTemplateLoading(FreeMarkerHelper::class.java, "/generator")
         }
+        configuration.defaultEncoding = "UTF-8"
+        configuration.tagSyntax = Configuration.AUTO_DETECT_TAG_SYNTAX
+        configuration.numberFormat = "###########.##"
+        configuration.setSharedVariable("LowerHyphen", LowerHyphen())
     }
 
     override fun put(key: String, value: Any) {
