@@ -16,7 +16,7 @@ class MultipleTaskProcessor : ITaskProcessor {
             }
             val codeEntityMap = codeEntity.asMap().toMutableMap()
             task.entityExtProcessors.forEach {
-                val result = it.invoke(task, codeEntity)
+                val result = it.invoke(task, codeProject, codeEntity)
                 codeEntityMap += result
             }
             val fieldProcessor = task.fieldExtProcessor

@@ -117,7 +117,6 @@ fun entityClass2CodeEntity(clazz: Class<*>, base: Class<*>): CodeEntity {
                     FieldType(
                         name = "List",
                         element = name.substring(index.inc())
-
                     )
                 }
                 base.isAssignableFrom(field.type) ->

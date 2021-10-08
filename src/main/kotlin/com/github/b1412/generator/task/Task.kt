@@ -12,7 +12,7 @@ typealias FilenameProcessor = (CodeProject, CodeEntity?) -> String
 
 typealias ProjectExtProcessor = (Task, CodeProject) -> Map<String, Any?>
 
-typealias EntityExtProcessor = (Task, CodeEntity) -> Map<String, Any?>
+typealias EntityExtProcessor = (Task, CodeProject, CodeEntity) -> Map<String, Any?>
 
 typealias FieldExtProcessor = (Task, CodeField) -> Map<String, Any?>
 
